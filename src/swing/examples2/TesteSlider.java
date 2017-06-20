@@ -24,13 +24,13 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 //import de.javasoft.plaf.synthetica.SyntheticaPlainLookAndFeel;
 
-public class Teste extends JFrame {
+public class TesteSlider extends JFrame {
 
 	private float imc = 0;
 	JTextField campo = new JTextField();
 	MeuSlider slider = new MeuSlider(imc);
 
-	public Teste() {
+	public TesteSlider() {
 		setSize(525, 300);
 		add(monta());
 		setLocationRelativeTo(null);
@@ -79,7 +79,7 @@ public class Teste extends JFrame {
             }
         }
 
-		Teste teste = new Teste();
+		TesteSlider teste = new TesteSlider();
 		teste.setVisible(true);
 	}
 }

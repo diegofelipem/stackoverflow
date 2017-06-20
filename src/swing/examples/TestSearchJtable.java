@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-public class TestX extends JFrame {
+public class TestSearchJtable extends JFrame {
 
     private String[] colunas
             = {"Country", "Capital", "Population in Millions", "Democracy"};
@@ -42,7 +42,7 @@ public class TestX extends JFrame {
     private JPanel painel = new JPanel();
     private JLabel label = new JLabel();
 
-    public TestX() {
+    public TestSearchJtable() {
         add(x());
         setSize(600, 400);
         setLocationRelativeTo(null);
@@ -106,6 +106,6 @@ public class TestX extends JFrame {
     }
 
     public static void main(String[] args) {
-        TestX t = new TestX();
+        TestSearchJtable t = new TestSearchJtable();
     }
 }
