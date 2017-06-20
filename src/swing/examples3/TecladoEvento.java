@@ -1,4 +1,4 @@
-package swing.examples2;
+package swing.examples3;
 
 import java.awt.event.KeyEvent;
 
