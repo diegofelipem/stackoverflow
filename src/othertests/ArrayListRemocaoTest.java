@@ -1,4 +1,4 @@
-package swing.examples2;
+package othertests;
 
 import java.util.ArrayList;
 
