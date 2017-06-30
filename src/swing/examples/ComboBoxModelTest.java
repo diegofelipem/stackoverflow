@@ -62,10 +62,10 @@ public class ComboBoxModelTest extends JFrame {
 		lblNewLabel.setBounds(157, 180, 95, 25);
 		contentPane.add(lblNewLabel);
 
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<Estado>();
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent evt) {
-				Estado e = (Estado) evt.getItem();
+				Estado e =  (Estado) evt.getItem();
 				lblNewLabel.setText(e.getSigla());
 			}
 		});
