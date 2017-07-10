@@ -29,7 +29,7 @@ public class DrawGiFTest extends JComponent {
 	//Este método recebe uma string com a url da imagem e
 	//cria um ImageIcon e retorna um tipo Image, com o 
 	//gif já carregador corretamente
-	private BufferedImage loadImage(String url){
+	private Image loadImage(String url){
 		
 		ImageIcon icon;
 		
