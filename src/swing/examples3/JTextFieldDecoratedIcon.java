@@ -36,10 +36,12 @@ public class JTextFieldDecoratedIcon {
 		JTextField field2 = new JTextField();
 		IconTextField field = new IconTextField();
 
-		URL path = new URL("https://i.imgur.com/WKfl8uV.png");
-		Image icone = ImageIO.read(path);
+		//URL path = new URL("https://i.imgur.com/WKfl8uV.png");
+		//Image icone = ImageIO.read(path);
+		Image icone = ImageIO.read(getClass().getResource("/res/user-log.png"));
 
 		field.setIcon(new ImageIcon(icone));
+		field.setPlaceHolder("Digite algo...");
 
 		frame.add(field, BorderLayout.NORTH);
 		field.setPreferredSize(new Dimension(250, 30));
@@ -70,7 +72,9 @@ public class JTextFieldDecoratedIcon {
 }
 
 class IconTextField extends JTextField {
+	
 	private IconTextComponentHelper mHelper = new IconTextComponentHelper(this);
+	private String placeHolder = "";
 
 	public IconTextField() {
 		super();
@@ -91,6 +95,16 @@ class IconTextField extends JTextField {
 	protected void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		getHelper().onPaintComponent(graphics);
+		
+		if (this.getText().isEmpty()
+				&& !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this)) {
+			graphics.setFont(this.getFont().deriveFont(Font.ITALIC));
+			graphics.drawString(placeHolder, getBorder().getBorderInsets(this).left, getBorder().getBorderInsets(this).top + getHeight()/2);
+			
+		} else {
+			repaint();
+			graphics.drawString("", getBorder().getBorderInsets(this).left, getBorder().getBorderInsets(this).top + getHeight()/2);
+		}
 	}
 
 	public void setIcon(Icon icon) {
@@ -101,6 +115,12 @@ class IconTextField extends JTextField {
 	public void setBorder(Border border) {
 		getHelper().onSetBorder(border);
 		super.setBorder(getHelper().getBorder());
+	}
+	
+	public void setPlaceHolder(String text){
+		if(text !=  null){
+			placeHolder = text;
+		}
 	}
 }
 
@@ -129,14 +149,6 @@ class IconTextComponentHelper {
 			mIcon.paintIcon(mTextComponent, g, iconInsets.left, iconInsets.top);
 		}
 
-		if (mTextComponent.getText().isEmpty()
-				&& !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == mTextComponent)) {
-			Graphics2D g2 = (Graphics2D)g.create();
-			g2.setFont(mTextComponent.getFont().deriveFont(Font.ITALIC));
-			g2.drawString("Digite algo...", mIcon.getIconWidth() + ICON_SPACING, 20);
-			g2.dispose();
-
-		}
 	}
 
 	void onSetBorder(Border border) {
