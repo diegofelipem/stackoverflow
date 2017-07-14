@@ -17,16 +17,19 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+import javax.swing.JLabel;
 
 public class JTextFieldTimeTest extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private Timer timer;
+	private JLabel lbTimer;
+	private Instant currentTime;
 	
 	/**
 	 * Launch the application.
@@ -55,38 +58,37 @@ public class JTextFieldTimeTest extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setPreferredSize(new Dimension(150, 70));
+		setPreferredSize(new Dimension(200, 120));
 		
 		this.contentPane = new JPanel();
 		this.contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(this.contentPane);
 		this.contentPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
-		this.textField = new JTextField();
-		this.textField.setColumns(10);
-		this.textField.setHorizontalAlignment(SwingConstants.CENTER);
-		this.textField.setEditable(false);
+		this.lbTimer = new JLabel("00:00:00.00");
 		
 		timer = new Timer(0, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				textField.setText(getTimeCurrent());
+				if(currentTime == null){
+					currentTime = Instant.MIN;
+				}
+				lbTimer.setText(getTimeCurrent());
 			}
 		});
 		
 		timer.start();
 		
 		
-		this.contentPane.add(this.textField);
+		this.contentPane.add(this.lbTimer);
 		
 		pack();
 		setLocationRelativeTo(null);
-		
 	}
 	
 	private String getTimeCurrent(){
-		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss.SS"));
+		return DateTimeFormatter.ofPattern("HH:mm:ss.SS").format(currentTime);
 	}
 
 }
