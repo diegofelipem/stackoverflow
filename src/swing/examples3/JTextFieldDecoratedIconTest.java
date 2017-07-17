@@ -2,14 +2,16 @@ package swing.examples3;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.IOException;
 import java.net.URL;
 
@@ -22,11 +24,10 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.text.JTextComponent;
 
-import org.jdesktop.swingx.prompt.PromptSupport;
-
-public class JTextFieldDecoratedIcon {
+public class JTextFieldDecoratedIconTest {
 
 	public void start() throws IOException {
 
@@ -36,18 +37,30 @@ public class JTextFieldDecoratedIcon {
 		JTextField field2 = new JTextField();
 		IconTextField field = new IconTextField();
 
-		//URL path = new URL("https://i.imgur.com/WKfl8uV.png");
-		//Image icone = ImageIO.read(path);
-		Image icone = ImageIO.read(getClass().getResource("/res/user-log.png"));
+		URL path = new URL("https://i.imgur.com/WKfl8uV.png");
+		Image icone = ImageIO.read(path);
 
 		field.setIcon(new ImageIcon(icone));
-		field.setPlaceHolder("Digite algo...");
 
 		frame.add(field, BorderLayout.NORTH);
 		field.setPreferredSize(new Dimension(250, 30));
 
-		// bibilioteca swingx-core-1.6.2 ↓
-		// PromptSupport.setPrompt("Digite..", field);
+		field.addFocusListener(new FocusListener() {
+
+			Color defaultBg = field.getBackground();
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				field.setBorder(new LineBorder(new Color(108, 85, 255)));
+				field.setBackground(Color.LIGHT_GRAY);
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				field.setBorder(new LineBorder(Color.GRAY));
+				field.setBackground(defaultBg);
+			}
+		});
 
 		frame.add(field2, BorderLayout.SOUTH);
 		field2.setPreferredSize(new Dimension(100, 30));
@@ -63,7 +76,7 @@ public class JTextFieldDecoratedIcon {
 
 		EventQueue.invokeLater(() -> {
 			try {
-				new JTextFieldDecoratedIcon().start();
+				new JTextFieldDecoratedIconTest().start();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
@@ -71,17 +84,24 @@ public class JTextFieldDecoratedIcon {
 	}
 }
 
+/*
+ * 
+ * class IconTextField
+ * 
+ */
+
 class IconTextField extends JTextField {
-	
+
 	private IconTextComponentHelper mHelper = new IconTextComponentHelper(this);
-	private String placeHolder = "";
 
 	public IconTextField() {
 		super();
+		PlaceHolderSupport.setPlaceHolder(this, "Preencha este campo...");
 	}
 
 	public IconTextField(int cols) {
 		super(cols);
+		PlaceHolderSupport.setPlaceHolder(this, "Preencha este campo...");
 	}
 
 	private IconTextComponentHelper getHelper() {
@@ -95,15 +115,11 @@ class IconTextField extends JTextField {
 	protected void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		getHelper().onPaintComponent(graphics);
-		
-		if (this.getText().isEmpty()
-				&& !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this)) {
-			graphics.setFont(this.getFont().deriveFont(Font.ITALIC));
-			graphics.drawString(placeHolder, getBorder().getBorderInsets(this).left, getBorder().getBorderInsets(this).top + getHeight()/2);
-			
+
+		if (this.getText().isEmpty() && !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this)) {
+			PlaceHolderSupport.onPaintComponent(graphics);
 		} else {
 			repaint();
-			graphics.drawString("", getBorder().getBorderInsets(this).left, getBorder().getBorderInsets(this).top + getHeight()/2);
 		}
 	}
 
@@ -116,13 +132,13 @@ class IconTextField extends JTextField {
 		getHelper().onSetBorder(border);
 		super.setBorder(getHelper().getBorder());
 	}
-	
-	public void setPlaceHolder(String text){
-		if(text !=  null){
-			placeHolder = text;
-		}
-	}
 }
+
+/*
+ * 
+ * class IconTextComponentHelper
+ * 
+ */
 
 class IconTextComponentHelper {
 
@@ -169,5 +185,74 @@ class IconTextComponentHelper {
 
 	private void resetBorder() {
 		mTextComponent.setBorder(mOrigBorder);
+	}
+}
+
+/**
+ * Classe responsável por definir um placeholder a um componente de texto
+ * 
+ * @author diego
+ *
+ */
+class PlaceHolderSupport {
+
+	private static JTextComponent textComponent;
+	private static String placeHolder = "";
+
+	/**
+	 * Aplica o texto recebido como placeholder ao componente de texto
+	 * 
+	 * @param comp
+	 *            - Componente de texto
+	 * @param strPlaceHolder
+	 *            - texto do placeholder
+	 */
+	public static void setPlaceHolder(JTextComponent comp, String strPlaceHolder) {
+
+		textComponent = comp;
+		placeHolder = strPlaceHolder;
+	}
+
+	/**
+	 * Desenha uma string centralizada no meio do componente representado pelo
+	 * retangulo
+	 * 
+	 * @param g
+	 *            - Instancia de Graphics.
+	 * @param text
+	 *            - String a ser desenhada.
+	 * @param rect
+	 *            - Retangulo para centralizar o texto.
+	 * @param font
+	 *            - Fonte a ser aplicada ao texto
+	 */
+	private static void drawPlaceHolderString(Graphics g, String text, Rectangle rect, Font font) {
+		// Obtém as métricas da fonte do texto
+		FontMetrics metrics = g.getFontMetrics(font);
+		// Determina a coordenada X do texto conforme
+		// o tamanho da borda interna esquerda
+		int x = textComponent.getBorder().getBorderInsets(textComponent).left;
+		// Determina a coordenada Y do texto para que
+		// fique centralizado verticalmente
+		int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
+		// aplica a fonte
+		g.setFont(font);
+		// desenha a string
+		g.drawString(text, x, y);
+	}
+
+	/**
+	 * Desenha o placeholder no componente de texto
+	 * 
+	 * @param g
+	 *            - instancia de Graphics
+	 */
+	public static void onPaintComponent(Graphics g) {
+
+		if (textComponent != null) {
+			Font font = textComponent.getFont().deriveFont(Font.ITALIC);
+			g.setColor(Color.gray);
+			drawPlaceHolderString(g, placeHolder, textComponent.getBounds(), font);
+		}
 	}
 }
