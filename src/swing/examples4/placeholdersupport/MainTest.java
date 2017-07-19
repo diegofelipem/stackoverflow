@@ -1,4 +1,4 @@
-package swing.examples3.placeholderTemp;
+package swing.examples4.placeholdersupport;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,19 +17,20 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 
-public class JTextFieldDecoratedIconTest {
+public class MainTest {
 
 	public void start() throws IOException {
 
 		final JFrame frame = new JFrame();
 		frame.setPreferredSize(new Dimension(500, 350));
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 		JTextField field2 = new JTextField();
 		IconTextField field = new IconTextField();
 
-		 URL path = new URL("https://i.imgur.com/WKfl8uV.png");
-		 Image icone = ImageIO.read(path);
-		//Image icone = ImageIO.read(getClass().getResource("/res/user-log.png"));
+		 //URL path = new URL("https://i.imgur.com/WKfl8uV.png");
+		 //Image icone = ImageIO.read(path);
+		Image icone = ImageIO.read(getClass().getResource("/res/user-log.png"));
 
 		field.setIcon(new ImageIcon(icone));
 
@@ -60,17 +61,15 @@ public class JTextFieldDecoratedIconTest {
 		field2.setPreferredSize(new Dimension(100, 30));
 
 		frame.pack();
-		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
-
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		frame.setVisible(true);
 	}
 
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(() -> {
 			try {
-				new JTextFieldDecoratedIconTest().start();
+				new MainTest().start();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}

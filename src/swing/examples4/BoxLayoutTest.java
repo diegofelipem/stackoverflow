@@ -1,4 +1,4 @@
-package swing.examples3;
+package swing.examples4;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

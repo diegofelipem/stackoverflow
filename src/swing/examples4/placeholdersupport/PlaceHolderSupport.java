@@ -1,4 +1,4 @@
-package swing.examples3.placeholderTemp;
+package swing.examples4.placeholdersupport;
 
 import java.awt.Color;
 import java.awt.Font;
