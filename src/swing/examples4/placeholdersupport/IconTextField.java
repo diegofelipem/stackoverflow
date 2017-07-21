@@ -7,7 +7,7 @@ import javax.swing.Icon;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 
-public class IconTextField extends JTextField{
+public class IconTextField extends JTextField {
 
 	private IconTextComponentHelper mHelper = new IconTextComponentHelper(this);
 
@@ -32,12 +32,7 @@ public class IconTextField extends JTextField{
 	protected void paintComponent(Graphics graphics) {
 		super.paintComponent(graphics);
 		getHelper().onPaintComponent(graphics);
-
-		if (this.getText().isEmpty() && !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this)) {
-			PlaceHolderSupport.onPaintComponent(graphics);
-		} else {
-			repaint();
-		}
+		PlaceHolderSupport.onPaintComponent(graphics);
 	}
 
 	public void setIcon(Icon icon) {
@@ -48,5 +43,5 @@ public class IconTextField extends JTextField{
 	public void setBorder(Border border) {
 		getHelper().onSetBorder(border);
 		super.setBorder(getHelper().getBorder());
-	}	
+	}
 }

@@ -6,12 +6,11 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import javax.swing.FocusManager;
 import javax.swing.text.JTextComponent;
 
-
 /**
- * Classe responsável por definir um placeholder a um
- * componente de texto
+ * Classe responsável por definir um placeholder a um componente de texto
  * 
  * @author diego
  *
@@ -21,10 +20,8 @@ public class PlaceHolderSupport {
 	private static JTextComponent textComponent;
 	private static String placeHolder = "";
 
-
 	/**
-	 * Aplica o texto recebido como placeholder ao
-	 * componente de texto
+	 * Aplica o texto recebido como placeholder ao componente de texto
 	 * 
 	 * @param comp - Componente de texto
 	 * @param strPlaceHolder - texto do placeholder
@@ -36,8 +33,8 @@ public class PlaceHolderSupport {
 	}
 
 	/**
-	 * Desenha uma string centralizada no meio do 
-	 * componente representado pelo retangulo
+	 * Desenha uma string centralizada no meio do componente representado pelo
+	 * retangulo
 	 * 
 	 * @param g - Instancia de Graphics.
 	 * @param text - String a ser desenhada.
@@ -51,7 +48,7 @@ public class PlaceHolderSupport {
 		// o tamanho da borda interna esquerda
 		int x = textComponent.getBorder().getBorderInsets(textComponent).left;
 		// Determina a coordenada Y do texto para que
-		//  fique centralizado verticalmente
+		// fique centralizado verticalmente
 		int y = rect.y + ((rect.height - metrics.getHeight()) / 2) + metrics.getAscent();
 		// aplica a fonte
 		g.setFont(font);
@@ -67,9 +64,16 @@ public class PlaceHolderSupport {
 	public static void onPaintComponent(Graphics g) {
 
 		if (textComponent != null) {
-			Font font = textComponent.getFont().deriveFont(Font.ITALIC);
-			g.setColor(Color.gray);
-			drawPlaceHolderString(g, placeHolder, textComponent.getBounds(), font);
+			//verifica se o campo está vazio e se 
+			//o foco atual do teclado pertence a ele
+			if (textComponent.getText().isEmpty()
+					&& !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == textComponent)) {
+				Font font = textComponent.getFont().deriveFont(Font.ITALIC);
+				g.setColor(Color.gray);
+				drawPlaceHolderString(g, placeHolder, textComponent.getBounds(), font);
+			} else {
+				textComponent.repaint();
+			}
 		}
 	}
 }
