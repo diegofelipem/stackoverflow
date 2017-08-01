@@ -2,7 +2,9 @@ package swing.examples4;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -25,6 +27,9 @@ public class Peso extends JFrame {
 		JLabel label = new JLabel("Peso:");
 		painel.add(label);
 		painel.add(peso);
+		peso.addActionListener(e -> {
+			System.out.println(peso.getValor());
+		});
 		add(painel);
 
 		setSize(220, 100);
@@ -42,10 +47,15 @@ class CampoPeso extends JFormattedTextField {
 
 			@Override
 			public AbstractFormatter getFormatter(JFormattedTextField tf) {
-				NumberFormat format = new DecimalFormat();
+				DecimalFormat format = new DecimalFormat();
 				format.setMinimumFractionDigits(2);
 				format.setMaximumFractionDigits(2);
 				format.setRoundingMode(RoundingMode.HALF_UP);
+				
+				DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(getLocale());
+				otherSymbols.setDecimalSeparator('.');
+				
+				format.setDecimalFormatSymbols(otherSymbols);
 				NumberFormatter formatter = new NumberFormatter(format);
 				formatter.setAllowsInvalid(false);
 				formatter.setMinimum(0.00);
@@ -59,7 +69,7 @@ class CampoPeso extends JFormattedTextField {
 
 	// para pegar o valor
 	public Float getValor() {
-		return new Float(getText().replace(".", "").replace(",", "."));
+		return Float.valueOf(getText());
 	}
 
 	// setar o valor
