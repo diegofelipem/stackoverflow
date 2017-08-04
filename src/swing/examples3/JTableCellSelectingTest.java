@@ -12,7 +12,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.table.DefaultTableModel;
 
-public class JTableTest extends JFrame {
+public class JTableCellSelectingTest extends JFrame {
 
 	public void createAndShowGUI() {
 
@@ -45,26 +45,31 @@ public class JTableTest extends JFrame {
 		
 		DefaultListSelectionModel selectionModel = new DefaultListSelectionModel() {
 			
+			
 		    private boolean isSelectable(int index0, int index1) {
-		        // TODO: Decide if this column index is selectable
-		        return  index0 >=1 && index1 <= 2;
+		        return  index0 >= 1 && index1 <= 2;
 		    }
 
 		    @Override
 		    public void setSelectionInterval(int index0, int index1) {
-		        if(isSelectable(index0, index1)) {
-		            super.setSelectionInterval(index0, index1);
+		    	int tempIndex0 = index0, tempIndex1 = index1;
+		        if(!isSelectable(tempIndex0, tempIndex1)) {
+		            tempIndex0++;
+		            tempIndex1++;
 		        }
+		        super.addSelectionInterval(tempIndex0, tempIndex1);
 		    }
 
 		    @Override
 		    public void addSelectionInterval(int index0, int index1) {
-		        if(isSelectable(index0, index1)) {
-		            super.addSelectionInterval(index0, index1);
+		    	int tempIndex0 = index0, tempIndex1 = index1;
+		        if(!isSelectable(tempIndex0, tempIndex1)) {
+		            tempIndex0++;
+		            tempIndex1++;
 		        }
+		        super.addSelectionInterval(tempIndex0, tempIndex1);
 		    }
 		};
-		
 		table.getColumnModel().setSelectionModel(selectionModel);
 
 		this.add(scrollPane, BorderLayout.CENTER);
@@ -81,7 +86,7 @@ public class JTableTest extends JFrame {
 
 			@Override
 			public void run() {
-				new JTableTest().createAndShowGUI();
+				new JTableCellSelectingTest().createAndShowGUI();
 
 			}
 		});
