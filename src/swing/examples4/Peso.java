@@ -42,6 +42,7 @@ class CampoPeso extends JFormattedTextField {
 
 	public CampoPeso() {
 		setColumns(5);
+		setText("0,00");
 
 		setFormatterFactory(new AbstractFormatterFactory() {
 
@@ -64,7 +65,7 @@ class CampoPeso extends JFormattedTextField {
 			}
 
 		});
-
+		setText("0.00");
 	}
 
 	// para pegar o valor
