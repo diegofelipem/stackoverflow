@@ -55,7 +55,7 @@ public class JTextFieldCPFFormatterTest extends JFrame {
 				JOptionPane.showMessageDialog(null, "CPF preenchido");
 			}
 		});
-		this.contentPane.add(button);
+		//this.contentPane.add(button);
 		pack();
 		setLocationRelativeTo(null);
 	}
