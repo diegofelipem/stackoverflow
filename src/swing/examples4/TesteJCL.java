@@ -70,22 +70,13 @@ class JComboList extends JPanel {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
                     boolean cellHasFocus) {
+            
             	
-                String selecteds = "";
-                
-                for(Map.Entry<String, JCheckBox> entry : items.entrySet()){
-                	if(entry.getValue().isSelected()){
-                		selecteds += entry.getKey();	
-                	}
+                if (items.containsKey(value)) {
+                    return items.get(value);
+                } else {
+                    return null;
                 }
-                
-                return new JLabel(selecteds);
-            	
-//                if (items.containsKey(value)) {
-//                    return items.get(value);
-//                } else {
-//                    return null;
-//                }
             }
 
 
