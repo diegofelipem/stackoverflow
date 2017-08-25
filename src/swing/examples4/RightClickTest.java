@@ -126,18 +126,12 @@ public class RightClickTest extends JFrame {
 	    	ItemSelAll.addActionListener(e -> {
 	    		textArea.selectAll();
 	    	});
-	    	
-	    	JMenuItem itemUndo = new JMenuItem("Undo");
-	    	itemUndo.addActionListener(e -> {
-	    		textArea.getActionMap().get("undo");
-	    	});
-	    	
+
 	        add(itemCopy);
 	        add(itemPaste);
 	        add(itemCut);
 	        addSeparator();
 	        add(ItemSelAll);
-	        add(itemUndo);
 	        
 //	        Action copyAction = textArea.getActionMap().get("copy");
 //	        Action cutAction = textArea.getActionMap().get("cut");
