@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -17,7 +18,7 @@ public class JTableMonetaryColumnTest extends JFrame {
 	public void createAndShowGUI() {
 
 		Object[][] rowData = {new Object[]{}};
-		Object[] columnNames = { "Column One", "Column Two", "Column Three" };
+		Object[] columnNames = { "Currency Column ", "Column Two", "Column Three" };
 		
 		DefaultTableModel model = new DefaultTableModel(rowData, columnNames){
 			@Override
@@ -48,7 +49,7 @@ public class JTableMonetaryColumnTest extends JFrame {
 	
 	class CurrencyTableCellRenderer extends DefaultTableCellRenderer {
 
-	    private final NumberFormat FORMAT = NumberFormat.getCurrencyInstance();
+	    private final NumberFormat FORMAT = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
 
 	    @Override
 	    public final Component getTableCellRendererComponent(JTable table, Object value,

@@ -21,8 +21,7 @@ public class TesteExcecao {
 		} catch (Exception e) {
 			StringWriter strStackTrace = new StringWriter();
 			e.printStackTrace(new PrintWriter(strStackTrace));
-			SwingUtilities.invokeLater(() -> DialogUnhandledException.
-					showException(e.getClass() + " " + e.getMessage(),strStackTrace.toString()));
+			DialogUnhandledException.showException(e.getClass() + " " + e.getMessage(),strStackTrace.toString());
 		}
 	}
 }

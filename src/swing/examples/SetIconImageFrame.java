@@ -23,7 +23,7 @@ public class SetIconImageFrame extends javax.swing.JFrame {
         initComponents();
         
         //Image trayImage = ImageIO.read(new URL("http://www.freeiconspng.com/uploads/tick-icon-2.png"));
-        URL path = getClass().getResource("address_book.png");
+        URL path = getClass().getResource("/res/address_book.png");
         System.out.println(path + "-" + getClass().getCanonicalName());
         Image icone = Toolkit.getDefaultToolkit().getImage(path);
         setIconImage(icone);

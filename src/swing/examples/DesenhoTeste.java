@@ -1,85 +1,89 @@
 package swing.examples;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
 
 public class DesenhoTeste extends JFrame {
 
-	private JPanel contentPane;
-	private JPanel drawPanel;
-	private JPanel superiorPanel;
-	private JButton btnNewButton;
-	
-	private Point point;
+    private static final long serialVersionUID = 1L;
+    private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DesenhoTeste frame = new DesenhoTeste();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the frame.
-	 */
-	public DesenhoTeste() {
-		initComponents();
-	}
-	private void initComponents() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-		
-		drawPanel = new JPanel();
-		contentPane.add(drawPanel, BorderLayout.CENTER);
-		
-		superiorPanel = new JPanel();
-		contentPane.add(superiorPanel, BorderLayout.NORTH);
-		
-		btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				drawPanel.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseClicked(MouseEvent e) {
-						point = e.getPoint();
-						Graphics2D g2 = (Graphics2D) drawPanel.getGraphics();
-						Rectangle rect = new Rectangle(point.x, point.y, 100, 100);
-						g2.setColor(Color.red);
-						g2.draw(rect);
-						drawPanel.repaint();
-					}
-				});
-			}
-		});
-		superiorPanel.add(btnNewButton);
-	}
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    DesenhoTeste frame = new DesenhoTeste();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
 
+    public DesenhoTeste() {
+        setTitle("Desenho Teste");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+        contentPane.setLayout(new BorderLayout(0, 0));
+        setContentPane(contentPane);
+
+        JPanel areaDeEdicao = new AlteraGrafico();
+        contentPane.add(areaDeEdicao, BorderLayout.CENTER);
+        areaDeEdicao.setLayout(null);
+    }
+
+    public class AlteraGrafico extends JPanel implements MouseMotionListener {
+
+        protected int xi;
+        protected int xf;
+        protected int yi;
+        protected int yf;
+        //estas variaveis guardam as coordenadas atuais quando o 
+        // mouse mover por sobre este componente
+        private int mX, mY;
+        private static final long serialVersionUID = 1L;
+
+        public AlteraGrafico() {
+            xi = 150;
+            xf = 250;
+            yi = 150;
+            yf = 250;
+            addMouseMotionListener(this);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            // TODO Auto-generated method stub
+            super.paintComponent(g);
+            Graphics2D g1 = (Graphics2D) g;
+            g1.drawRect(150, 150, 100, 100);
+
+            if ((xi <= mX && mX <= xf) && (yi <= mY && mY <= yf)) {
+                g1.setColor(Color.red);
+                g1.fillRect(150, 150, 100, 100);
+            }
+        }
+
+        @Override
+        public void mouseDragged(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+
+            mX = e.getX();
+            mY = e.getY();
+           repaint();
+        }
+    }
 }
