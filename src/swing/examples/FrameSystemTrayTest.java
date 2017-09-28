@@ -25,17 +25,17 @@ public class FrameSystemTrayTest {
         if (SystemTray.isSupported()) {
             //pega uma instancia da bandeija do sistema
             final SystemTray tray = SystemTray.getSystemTray();
-            //apenas para demonstração, altere para a imagem da
-            //sua aplicação
+            //apenas para demonstraÃ§Ã£o, altere para a imagem da
+            //sua aplicaÃ§Ã£o
             Image icon = ImageIO.read(new URL("http://www.freeiconspng.com/uploads/tick-icon-2.png"));
             //frame.setIconImage(icon);
             //cria um icone de bandeira, recebendo uma imagem 
             final TrayIcon trayIcon = new TrayIcon(icon);
             //IMPORTANTE! Deixa a propria API
             //decidir o tamanho, se remover essa linha
-            //não aceitará imagem de qualquer tamanho
+            //nÃ£o aceitarÃ¡ imagem de qualquer tamanho
             trayIcon.setImageAutoSize(true);
-            trayIcon.displayMessage("Atenção!", "Clique aqui para abrir mais detalhes.", TrayIcon.MessageType.WARNING);
+            trayIcon.displayMessage("AtenÃ§Ã£o!", "Clique aqui para abrir mais detalhes.", TrayIcon.MessageType.WARNING);
             trayIcon.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -47,7 +47,7 @@ public class FrameSystemTrayTest {
 //                @Override
 //                public void mouseClicked(MouseEvent e) {
 //                    if (e.getClickCount() == 1) {
-//                        //a ação que você
+//                        //a aÃ§Ã£o que vocÃª
 //                        //quer que ocorra quando for clicado
 //                        JOptionPane.showMessageDialog(null, "passou");
 //                    }
@@ -55,7 +55,7 @@ public class FrameSystemTrayTest {
 //
 //            });
 
-            //adiciona uma ação ao frame, para monitorar alterações de status
+            //adiciona uma aÃ§Ã£o ao frame, para monitorar alteraÃ§Ãµes de status
             //da janela
             frame.addWindowStateListener(new WindowAdapter() {
                 @Override
