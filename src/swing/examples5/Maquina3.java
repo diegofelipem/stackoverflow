@@ -58,16 +58,21 @@ public class Maquina3 extends JFrame {
 			if (text == null | text.length() == 0)
 				return;
 
-			String regex = "([Qq]{1}(0[1-9]|10))", newText = "";
+			String regex = "([Qq]{1}(0[1-9]|10))";
+			StringBuilder builder =  new StringBuilder();
 
 			Pattern p = Pattern.compile(regex);
 			Matcher m = p.matcher(text);
 
 			while (m.find()) {
-				newText += m.group() + ",";
+				
+				builder.append(builder.length() == 0 ? "" : ",");
+				builder.append(m.group());
 			}
+			builder.insert(0, "{");
+			builder.append("}");
 
-			textField.setText("{" + newText.toLowerCase() + "}");
+			textField.setText(builder.toString().toLowerCase());
 		});
 
 		this.panelSouth.add(this.btnFormatar);
