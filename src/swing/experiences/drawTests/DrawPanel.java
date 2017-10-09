@@ -1,4 +1,4 @@
-package swing.examples.drawTests;
+package swing.experiences.drawTests;
 
 import java.awt.Cursor;
 import java.awt.Graphics;

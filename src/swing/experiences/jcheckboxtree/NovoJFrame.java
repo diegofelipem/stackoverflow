@@ -1,4 +1,4 @@
-package swing.examples3.jcheckboxtree;
+package swing.experiences.jcheckboxtree;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;

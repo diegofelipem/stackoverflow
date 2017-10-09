@@ -1,4 +1,4 @@
-package swing.examples.exception_handler_test;
+package swing.experiences.exception_handler_test;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

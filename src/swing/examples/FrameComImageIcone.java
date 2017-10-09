@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.WindowConstants;
 
-import swing.examples.exception_handler_test.DialogUnhandledException;
+import swing.experiences.exception_handler_test.DialogUnhandledException;
 
 public class FrameComImageIcone {
 

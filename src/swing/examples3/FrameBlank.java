@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import swing.examples.drawTests.DrawPanel;
+import swing.experiences.drawTests.DrawPanel;
 
 public class FrameBlank extends JFrame {
 

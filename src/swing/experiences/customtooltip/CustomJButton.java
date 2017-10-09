@@ -1,4 +1,4 @@
-package swing.examples4.customtooltip;
+package swing.experiences.customtooltip;
 
 import javax.swing.JButton;
 import javax.swing.JToolTip;
