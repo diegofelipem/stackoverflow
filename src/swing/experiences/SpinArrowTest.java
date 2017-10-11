@@ -10,11 +10,19 @@ public class SpinArrowTest extends JFrame {
     private static final long serialVersionUID = 1L;
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(SpinArrowTest::new);
+    	
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		}
+		
+    	EventQueue.invokeLater(() -> new SpinArrowTest().setVisible(true));
     }
 
     public SpinArrowTest() {
-        setTitle("Clique no botão Rotate");
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setPreferredSize(new Dimension(400, 300));
         JPanel contentPane = new JPanel();
@@ -41,7 +49,7 @@ public class SpinArrowTest extends JFrame {
     }
 }
 
-// painel principal onde ocorrerá a animação e desenho
+//painel principal onde ocorrerá a animação e desenho
 
 class Board extends JPanel {
 
@@ -88,7 +96,7 @@ class Board extends JPanel {
     }
 }
 
-// CLASSE QUE REPRESENTA O CIRCULO
+//CLASSE QUE REPRESENTA O CIRCULO
 
 class Circle {
 
@@ -113,7 +121,7 @@ class Circle {
     }
 }
 
-// CLASSE QUE REPRESENTA A SETA QUE IRÁ GIRAR DENTRO DO CIRCULO
+//CLASSE QUE REPRESENTA A SETA QUE IRÁ GIRAR DENTRO DO CIRCULO
 
 class LineArrow {
 

@@ -15,13 +15,13 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class RotateWheel {
+public class RotateWheelExample {
 
     public static void main(String[] args) {
-        new RotateWheel();
+        new RotateWheelExample();
     }
 
-    public RotateWheel() {
+    public RotateWheelExample() {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
