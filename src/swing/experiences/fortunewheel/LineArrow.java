@@ -1,4 +1,4 @@
-package swing.experiences.wheelRandomColors;
+package swing.experiences.fortunewheel;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

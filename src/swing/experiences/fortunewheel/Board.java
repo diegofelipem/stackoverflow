@@ -1,4 +1,4 @@
-package swing.experiences.wheelRandomColors;
+package swing.experiences.fortunewheel;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -16,11 +16,11 @@ public class Board extends JPanel {
 		angleDegrees = 90;
 	}
 
-	public void spin() {
-		angleDegrees += 1;
-		angleDegrees %= 360;
-		repaint();
-	}
+    public void spin(double degrees) {
+        angleDegrees += degrees;
+        angleDegrees %= 360;
+        repaint();
+    }
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -44,11 +44,12 @@ public class Board extends JPanel {
 			x = widthRectangle / 2 - diameter / 2;
 			y = 0;
 		}
-		Circle circle = new Circle(x, y, diameter, Color.red);
+		Circle circle = new Circle(x, y, diameter);
 		circle.draw(g2);
-
-		LineArrow line = new LineArrow(x + diameter / 2, y + diameter / 2, angleDegrees, diameter / 2, Color.white, 3,
-				20);
+		//calcular o tamanho da seta um pouco menor que o raio
+        int arrowlength = Math.round(diameter/2 * 0.9f);
+		LineArrow line = new LineArrow(x + diameter / 2, y + diameter / 2, angleDegrees, arrowlength, Color.white, 4,
+				15);
 		line.draw(g2);
 	}
 }
