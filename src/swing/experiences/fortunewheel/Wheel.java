@@ -8,12 +8,11 @@ import java.awt.Polygon;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Circle {
+public class Wheel {
 
 	private final int x;
 	private final int y;
 	private final int diameter;
-//	private static final Color[] colors;
 	private static final Color[] colors = { new Color(128, 128, 128), new Color(128, 0, 0), new Color(128, 128, 0),
 			new Color(0, 128, 0), new Color(128, 0, 128), new Color(0, 0, 128) };
 
@@ -24,17 +23,7 @@ public class Circle {
 	private final double sliceAngleRadians;
 	private final double sliceAngleDegree;
 
-	static {
-		// gerando cores aleatorias de acordo com o total de fatias
-//		 colors = new Color[TOTAL_SLICES];
-//		 Random rand = new Random();
-//		
-//		 for (int i = 0; i < TOTAL_SLICES; i++)
-//		 colors[i] = new Color(rand.nextInt(255), rand.nextInt(255),
-//		 rand.nextInt(255)).darker();
-	}
-
-	public Circle(int x, int y, int diameter) {
+	public Wheel(int x, int y, int diameter) {
 		super();
 		this.x = x;
 		this.y = y;

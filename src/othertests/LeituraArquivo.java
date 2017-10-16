@@ -9,6 +9,10 @@ public class LeituraArquivo {
 
 	public static void main(String[] args) {
 		Escreve();
+		
+		String caminho = "C:/Users/Vinicius/Documents/NetBeansProjects/ProjetoORI/inseremarca.exe";
+		
+		System.out.println(new File(caminho).getParent());
 	}
 
 	public static void Escreve() {
@@ -40,4 +44,8 @@ public class LeituraArquivo {
 		}
 
 	}
+	
+	
+	
+	
 }

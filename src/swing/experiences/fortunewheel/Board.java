@@ -44,7 +44,7 @@ public class Board extends JPanel {
 			x = widthRectangle / 2 - diameter / 2;
 			y = 0;
 		}
-		Circle circle = new Circle(x, y, diameter);
+		Wheel circle = new Wheel(x, y, diameter);
 		circle.draw(g2);
 		//calcular o tamanho da seta um pouco menor que o raio
         int arrowlength = Math.round(diameter/2 * 0.9f);

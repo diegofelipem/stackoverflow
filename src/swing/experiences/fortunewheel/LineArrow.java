@@ -2,7 +2,9 @@ package swing.experiences.fortunewheel;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.LinearGradientPaint;
 import java.awt.Polygon;
 import java.awt.geom.AffineTransform;
 
