@@ -35,11 +35,11 @@ public class Wheel {
 		this.circleCenter = new Point((x + diameter / 2), (y + diameter / 2));
 		// array de pontos distribuidos na extremidade do circulo
 		this.points = new Point[TOTAL_SLICES];
-		// preenche o array com pontos distribuidos no comprimento da
-		// circunferencia
-		for (int i = 0; i < TOTAL_SLICES; i++)
-			points[i] = new Point((int) (circleCenter.x + (diameter / 2) * Math.cos(sliceAngleRadians * (i + 1))),
-					(int) (circleCenter.y + (diameter / 2) * Math.sin(sliceAngleRadians * (i + 1))));
+//		// preenche o array com pontos distribuidos no comprimento da
+//		// circunferencia
+//		for (int i = 0; i < TOTAL_SLICES; i++)
+//			points[i] = new Point((int) (circleCenter.x + (diameter / 2) * Math.cos(sliceAngleRadians * (i + 1))),
+//					(int) (circleCenter.y + (diameter / 2) * Math.sin(sliceAngleRadians * (i + 1))));
 	}
 
 	public void draw(Graphics2D g2) {

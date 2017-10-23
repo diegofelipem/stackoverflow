@@ -10,10 +10,7 @@ public class OrdenarArrays {
 
 		System.out.println("Array sem ordenacao:");
 
-		for (int n : vet) {
-			System.out.print(n + " ");
-		}
-		System.out.println();
+		System.out.println(Arrays.toString(vet));
 
 		for (int i = 1; i < vet.length; i++) {
 			for (int j = 0; j < i; j++) {
@@ -27,10 +24,6 @@ public class OrdenarArrays {
 		}
 
 		System.out.println("Array em ordem decrescente:");
-
-		for (int n : vet) {
-			System.out.print(n + " ");
-		}
-		System.out.println();
+		System.out.println(Arrays.toString(vet));
 	}
 }

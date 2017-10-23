@@ -18,7 +18,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 
-public class FortuneWheelTest extends JFrame {
+public class FortuneWheelMain extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JButton spinButton;
@@ -33,10 +33,10 @@ public class FortuneWheelTest extends JFrame {
 			e.printStackTrace();
 		}
 
-		EventQueue.invokeLater(() -> new FortuneWheelTest().setVisible(true));
+		EventQueue.invokeLater(() -> new FortuneWheelMain().setVisible(true));
 	}
 
-	public FortuneWheelTest() {
+	public FortuneWheelMain() {
 		initComponents();
 	}
 
@@ -73,7 +73,7 @@ public class FortuneWheelTest extends JFrame {
     private static final double VELOCIDADE_ANGULAR_INICIAL_MAXIMA = 720;
 
     // Unidade de aceleração, medido em graus por segundo a cada segundo.
-    private static final double ATRITO = -50;
+    private static final double ATRITO = -45;
 
     // Tempo entre ticks, em MICROsegundos.
     // Quanto menor for, mais preciso fica, porém mais custoso será.

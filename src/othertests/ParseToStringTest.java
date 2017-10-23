@@ -14,5 +14,10 @@ public class ParseToStringTest {
 
 	}
 
-	class SomeObj {}
+	class SomeObj {
+
+		@Override
+		public String toString() {
+			return "SomeObj []";
+		}}
 }
