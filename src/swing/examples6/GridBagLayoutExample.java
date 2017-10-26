@@ -1,4 +1,4 @@
-package swing.examples3;
+package swing.examples6;
 
 import java.awt.Button;
 import java.awt.Color;
@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-public class GridBagLayoutTest extends JPanel {
+public class GridBagLayoutExample extends JPanel {
 
 	protected void makebutton(String name, GridBagLayout gridbag, GridBagConstraints c) {
 		
@@ -25,7 +25,7 @@ public class GridBagLayoutTest extends JPanel {
 		add(button);
 	}
 
-	public GridBagLayoutTest() {
+	public GridBagLayoutExample() {
 
 		GridBagLayout gridbag = new GridBagLayout();
 		GridBagConstraints c = new GridBagConstraints();
@@ -74,7 +74,7 @@ public class GridBagLayoutTest extends JPanel {
 
 	public static void main(String args[]) {
 		JFrame f = new JFrame();
-		GridBagLayoutTest mgb = new GridBagLayoutTest();
+		GridBagLayoutExample mgb = new GridBagLayoutExample();
 		f.add("Center", mgb);
 		f.pack();
 		mgb.setFocusInComponents(f.getContentPane());

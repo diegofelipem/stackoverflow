@@ -1,4 +1,4 @@
-package swing.examples;
+package swing.examples6;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,14 +16,14 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.Border;
 
-public class GridLayoutTest extends JFrame{
+public class GridLayoutExTest extends JFrame{
 
 	JPanel painel01;
 	final int PLAYER_ONE = 1;
 	final int PLAYER_TWO = 2;	
 	
 	
-	public GridLayoutTest() {
+	public GridLayoutExTest() {
 		initComponents();
 	}
 
@@ -49,7 +49,7 @@ public class GridLayoutTest extends JFrame{
 		pack();
 	}
 	
-	class ActionListener extends MouseAdapter{
+	class MouseAction extends MouseAdapter{
 		@Override
 		public void mouseClicked(MouseEvent e) {
 			JLabel lb = (JLabel)e.getSource();
@@ -60,7 +60,7 @@ public class GridLayoutTest extends JFrame{
 	public static void main(String[] args){
 
 		SwingUtilities.invokeLater(() ->{
-			GridLayoutTest f = new GridLayoutTest();
+			GridLayoutExTest f = new GridLayoutExTest();
 			f.setLocationRelativeTo(null);
 			f.setVisible(true);
 		});
