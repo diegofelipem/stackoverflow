@@ -10,6 +10,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.UIManager;
 import javax.swing.plaf.basic.BasicMenuBarUI;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JButton;
 
 public class JMenuBarDisableHoverTest extends JFrame {
 
@@ -21,15 +24,17 @@ public class JMenuBarDisableHoverTest extends JFrame {
 	private JMenuItem mi_save;
 	private JMenuItem mi_cut;
 	private JMenuItem mi_copy;
+	private JPanel panel;
+	private JButton btn;
 
 	public static void main(String args[]) {	
 
 		for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-			if (info.getName().equalsIgnoreCase("Windows")) {
+			if (info.getName().equalsIgnoreCase("Nimbus")) {
 				try {
 
-//					UIManager.put("MenuItem.selectionBackground", UIManager.getColor("MenuItem.background"));
-//					UIManager.put("MenuItem.selectionForeground", UIManager.getColor("MenuItem.foreground"));
+					UIManager.put("MenuItem.selectionBackground", UIManager.getColor("MenuItem.background"));
+					UIManager.put("MenuItem.selectionForeground", UIManager.getColor("MenuItem.foreground"));
 //					UIManager.put("MenuItem.borderPainted", false);
 //					System.out.println(UIManager.getLookAndFeel());
 
@@ -49,6 +54,13 @@ public class JMenuBarDisableHoverTest extends JFrame {
 		initComponents();
 		pack();
 		setLocationRelativeTo(null);
+		
+		this.panel = new JPanel();
+		getContentPane().add(this.panel, BorderLayout.NORTH);
+		
+		this.btn = new JButton("New button");
+		this.btn.setRolloverEnabled(false);
+		this.panel.add(this.btn);
 	}
 
 	private void initComponents() {
