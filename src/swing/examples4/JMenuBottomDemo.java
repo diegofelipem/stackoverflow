@@ -22,8 +22,7 @@ public class JMenuBottomDemo extends JFrame {
         menuBar.add(menu2);
         
         getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(menuBar, BorderLayout.SOUTH);
-        //this.setJMenuBar(menuBar);//, BorderLayout.SOUTH);
+        this.setJMenuBar(menuBar);//, BorderLayout.SOUTH);
         
         pack();
         setSize(500, 300);
