@@ -13,21 +13,17 @@ public class PosicaoDeCompTest {
 			JPanel panel = new JPanel(new GridBagLayout());
 
 			GridBagConstraints gbc1 = new GridBagConstraints();
-			gbc1.gridx = 0;
-			gbc1.gridy = 0;
+			gbc1.gridwidth = GridBagConstraints.REMAINDER;
 			JTextField texto = new JTextField();
 			texto.setColumns(10);
 			panel.add(texto, gbc1);
 
-			JComboBox combo = new JComboBox();
+			JComboBox combo = new JComboBox<String>();
 			combo.setBackground(Color.WHITE);
 			combo.addItem("opção1");
 			combo.addItem("opção2");
 			combo.addItem("opção3");
-			GridBagConstraints gbc2 = new GridBagConstraints();
-			gbc2.gridx = 0;
-			gbc2.gridy = 1;
-			panel.add(combo, gbc2);
+			panel.add(combo);
 
 
 			frame.setSize(500, 500);
