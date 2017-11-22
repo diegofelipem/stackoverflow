@@ -22,6 +22,12 @@ public class JTableCheckboxTest extends JFrame{
 			public Class<?> getColumnClass(int columnIndex) {
 				return columnIndex == 0 ? Boolean.class : super.getColumnClass(columnIndex);
 			}
+			
+			@Override
+			public void setValueAt(Object aValue, int row, int column) {
+				if(column == 0) System.out.printf("coluna %d , linha %d é booleana e foi alterada para %s \n", column, row, aValue);
+				super.setValueAt(aValue, row, column);
+			}
 		};
 		
 		JTable table = new JTable(model);		
