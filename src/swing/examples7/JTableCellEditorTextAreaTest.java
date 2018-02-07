@@ -2,17 +2,32 @@ package swing.examples7;
 
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
 
+import javax.swing.AbstractCellEditor;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellEditor;
 
 public class JTableCellEditorTextAreaTest extends JFrame {
 
@@ -38,29 +53,19 @@ public class JTableCellEditorTextAreaTest extends JFrame {
 
 		FuncionarioTableModel model = new FuncionarioTableModel(funcionarios);
 
-		this.tabela = new JTable(model) {
-			
-			@Override
-			public void changeSelection(int rowIndex, int columnIndex, boolean toggle, boolean extend) {
-
-				super.changeSelection(rowIndex, columnIndex, toggle, extend);
-				
-				if(editCellAt(rowIndex, columnIndex)) {
-					Component editor = getEditorComponent();
-					editor.requestFocusInWindow();
-				}
-			}
-		};
+		this.tabela = new JTable(model);
+		this.tabela.setSurrendersFocusOnKeystroke(true);
 		this.scrollPainel = new JScrollPane(tabela);
 		tabela.getColumnModel().getColumn(0).setCellEditor(new TextAreaEditor());
 		tabela.setRowHeight(50);
-		
+
 		this.add(scrollPainel);
 		this.pack();
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -140,35 +145,50 @@ class FuncionarioTableModel extends AbstractTableModel {
 	}
 }
 
-// celleditor
-class TextAreaEditor extends DefaultCellEditor {
+class TextAreaEditor extends AbstractCellEditor implements TableCellEditor {
 
-	protected JScrollPane scrollpane;
-	protected JTextArea textarea;
+	JTextArea textArea = new JTextArea();
+	JScrollPane scroll;
 
 	public TextAreaEditor() {
-		super(new JCheckBox());
-		scrollpane = new JScrollPane();
-		textarea = new JTextArea();
-		textarea.setLineWrap(true);
-		textarea.setWrapStyleWord(true);
-		// textarea.setBorder(new TitledBorder("This is a JTextArea"));
-		scrollpane.getViewport().add(textarea);
 
-		// colocar para editar em 2 click
-		//setClickCountToStart(2);
-		//
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setBorder(new TitledBorder("This is a JTextArea"));
+
+		// altera o comportamento padrao do TAB para que transfira o foco
+		// neste caso, vai transferir para a celular seguinte
+		textArea.getInputMap(JTextArea.WHEN_FOCUSED).put(KeyStroke.getKeyStroke("TAB"), "transferFocus");
+
+		scroll = new JScrollPane(textArea);
 	}
 
-	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		textarea.setText((String) value);
+	@Override
+	public boolean isCellEditable(EventObject e) {
+		super.isCellEditable(e);
+		// habilita edicao para o mouse apenas quando
+		// for clicado 2 vezes
+		if (e instanceof MouseEvent) {
+			MouseEvent evt = (MouseEvent) e;
+			return evt.getClickCount() >= 2;
+		}		
 
-		return scrollpane;
+		return true;
 	}
 
+	@Override
+	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int rowIndex,
+			int colIndex) {
+		
+		String text = value == null ? "" : value.toString();
+		textArea.setText(text);
+
+		return scroll;
+	}
+
+	@Override
 	public Object getCellEditorValue() {
-		return textarea.getText();
-
+		return textArea.getText();
 	}
 }
 
