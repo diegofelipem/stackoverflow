@@ -11,11 +11,11 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 
-public class TelaPrincipal extends JFrame {
+public class AlternarTabsAction extends JFrame {
 
     public static void main(String[] args) {
         Runnable startApp = () -> {
-            TelaPrincipal fc = new TelaPrincipal();
+            AlternarTabsAction fc = new AlternarTabsAction();
             fc.setVisible(true);
         };
 
@@ -26,7 +26,7 @@ public class TelaPrincipal extends JFrame {
     private JButton button = new JButton("Click");
     private JDesktopPane jdp = new JDesktopPane();
 
-    public TelaPrincipal() {
+    public AlternarTabsAction() {
         add(montaTela());
         setSize(700, 400);
         action();
