@@ -16,10 +16,7 @@ public class BoxLayoutTest extends JFrame
 {
     public static void main(String[] args) {
     	
-    	SwingUtilities.invokeLater(() ->{
-            BoxLayoutTest teste = new BoxLayoutTest();
-            teste.setVisible(true);
-    	});                
+    	SwingUtilities.invokeLater(() -> new BoxLayoutTest().setVisible(true));                
     }
 
     private PainelX painel = new PainelX();
