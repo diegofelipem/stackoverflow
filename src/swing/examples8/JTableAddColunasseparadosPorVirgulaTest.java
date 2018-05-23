@@ -13,16 +13,16 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Dados2 extends JFrame {
+public class JTableAddColunasseparadosPorVirgulaTest extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 
 	public static void main(String[] args) {
-		EventQueue.invokeLater(() -> new Dados2().setVisible(true));
+		EventQueue.invokeLater(() -> new JTableAddColunasseparadosPorVirgulaTest().setVisible(true));
 	}
 
-	public Dados2() {
+	public JTableAddColunasseparadosPorVirgulaTest() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(450, 300));
