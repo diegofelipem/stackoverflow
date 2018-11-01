@@ -30,7 +30,7 @@ public class JTablePaginacao {
 		final JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_NEVER,
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		Dimension d = table.getPreferredSize();
-		scrollPane.setPreferredSize(new Dimension(d.width, table.getRowHeight() * rows));
+		scrollPane.setPreferredSize(new Dimension(d.width, table.getRowHeight() * rows + 5));
 
 		JPanel navigation = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JButton next = new JButton(">");
