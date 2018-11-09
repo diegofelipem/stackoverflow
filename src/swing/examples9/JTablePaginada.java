@@ -234,7 +234,7 @@ class JSONUtils {
 		try {
 //			FileReader arq = new FileReader("C:\\temp\\alunos.json");
 //			BufferedReader lerArq = new BufferedReader(arq);
-			BufferedReader lerArq = new BufferedReader(new InputStreamReader(JTablePaginacao.class.getResourceAsStream("/res/alunos.json")));
+			BufferedReader lerArq = new BufferedReader(new InputStreamReader(JTablePaginacaoExemplo.class.getResourceAsStream("/res/alunos.json")));
 
 			linha = lerArq.readLine();
 			/*

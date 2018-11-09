@@ -5,14 +5,14 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class JTablePaginacao {
+public class JTablePaginacaoExemplo {
 
 	public static void main(String[] args) {
 
-		SwingUtilities.invokeLater(JTablePaginacao::new);
+		SwingUtilities.invokeLater(JTablePaginacaoExemplo::new);
 	}
 
-	public JTablePaginacao() {
+	public JTablePaginacaoExemplo() {
 
 		String[] columns = { "1", "2", "3", "4", "5", "6", "7" };
 		Integer[][] data = new Integer[1000][columns.length];
